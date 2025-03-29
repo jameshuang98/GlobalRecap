@@ -1,0 +1,77 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.pycache/
+*.env
+*.venv
+.venv/
+
+# Environment variables file
+.env
+
+# Virtual environment folder
+venv/
+
+# Distribution / packaging
+.Python
+build/
+dist/
+.eggs/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# VS Code settings folder
+.vscode/
+
+# pytest cache
+.pytest_cache/
+
+# PyInstaller
+#  Often includes compiled files and is used for standalone executable creation
+*.spec
+
+# Coverage reports
+.coverage
+.coverage.*
+
+# mypy
+.mypy_cache/
+
+# Flake8
+.flake8
+
+# Test output
+nosetests.xml
+coverage.xml
+*.cover
+
+# pipenv
+Pipfile.lock
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Django
+*.log
+*.pot
+*.pyc
+*.pyo
+db.sqlite3
+/staticfiles/
+
+# AWS Lambda specific
+.aws-sdk/
+serverless.yml
+*.json
+.aws/
+
+# AWS CloudFormation/Infrastructure as Code
+cdk.out/
+*.template
+
+# Azure function specific (if you're switching away from Azure)
+local.settings.json
+.hosts
