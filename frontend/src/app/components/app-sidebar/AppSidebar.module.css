@@ -1,0 +1,7 @@
+.appSidebar
+{
+    position: fixed;
+    top: 44px;
+    left: 0;
+    height: calc(100vh - 44px);
+}
