@@ -29,7 +29,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ title, summary, category, tags, art
         <div className='flex flex-col justify-between'>
           <div className='space-x-1'>
             {tags && tags.map((tag, index) => (
-              <Badge key={index} className={`text-xs font-normal my-1 rounded-xl bg-[${tagColors[tag]}]`} >
+              <Badge key={index} className={`text-xs font-normal my-1 rounded-xl`} style={{ backgroundColor: tagColors[tag] }} >
                 {tag}
               </Badge>
             ))}
