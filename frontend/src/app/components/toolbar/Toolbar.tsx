@@ -4,7 +4,7 @@ import { Menu } from "lucide-react"
 
 const Toolbar = () => {
     return (
-        <div className="flex items-center justify-between px-3 py-1 shadow-md mb-2">
+        <div className="flex items-center justify-between px-3 py-1 shadow-md">
             <div>GlobalRecap</div>
             <Button variant="ghost" size="icon">
                 <Menu />
