@@ -122,3 +122,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+main {
+  padding: 1.2rem;
+  flex-grow: 1;
+}
