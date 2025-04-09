@@ -1,0 +1,33 @@
+databaseType = "PostgreSql"
+id = "6e0e7f05-dc7b-4d38-ab3a-87fed99480cf"
+name = "GlobalRecap"
+
+[flyway]
+locations = [ "filesystem:./migrations" ]
+mixed = true
+outOfOrder = true
+schemaModelLocation = "schema-model"
+validateMigrationNaming = true
+
+  [flyway.check]
+  majorTolerance = 0
+
+[flywayDesktop]
+developmentEnvironment = "development"
+shadowEnvironment = "shadow"
+
+[redgateCompare]
+filterFile = "filter.rgf"
+
+[redgateCompare.postgresql.options.behavior]
+detectRenames = "identical-only"
+
+[redgateCompare.postgresql.options.ignores]
+ignoreNewlinesInTextObjects = "off"
+
+[environments.globalrecapdev]
+url = "jdbc:postgresql://host.docker.internal:5432/globalrecapdev"
+user = "devuser"
+password = "devpassword"
+locations = "filesystem:./migrations"
+schemas = [ "public" ]
