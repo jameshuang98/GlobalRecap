@@ -1,9 +1,9 @@
 export enum Tag {
-    Positive = "Positive",
-    Negative = "Negative",
-    Neutral = "Neutral",
-    "Left-leaning" = "Left-leaning",
-    "Right-leaning" = "Right-leaning",
-    "Slightly-biased" = "Slightly-biased",
-    Biased = "Biased",
-  }
+  Positive = "Positive",
+  Neutral = "Neutral",
+  Negative = "Negative",
+  Left_leaning = "Left-leaning",
+  Right_leaning = "Right-leaning",
+  Slightly_biased = "Slightly-biased",
+  Biased = "Biased",
+}
