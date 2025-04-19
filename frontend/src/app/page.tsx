@@ -1,18 +1,21 @@
 "use client";
-import React, { useState, useEffect, use } from "react";
+import React, { useState, useEffect } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 
+import { useDateQuery } from "./hooks/useDateQuery";
 import NewsCard from "./components/news-card";
 import { Article } from "@/models/article";
 import DateSelector from "./components/date-selector";
+import { formatDate, isValidDate, parseDate } from "./utils/dateUtils";
 
 
 export default function Home() {
   const [articles, setArticles] = useState<Article[]>([]);
-  const [date, setDate] = useState<Date>(new Date());
+  const {date, setDate} = useDateQuery();
 
   useEffect(() => {
     const fetchArticles = async () => {
-      const formattedDate = date.toISOString().split("T")[0];
+      const formattedDate = formatDate(date);
       const res = await fetch(`/api/articles?date=${formattedDate}`);
       const data = await res.json();
       setArticles(data);
