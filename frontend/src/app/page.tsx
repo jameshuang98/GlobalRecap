@@ -1,19 +1,31 @@
-import { Tag } from "@/models/enums/tag";
-import NewsCard from "./components/news-card";
+"use client";
+import React, { useState, useEffect, use } from "react";
 
-import { NewsCategory } from "@/models/enums/news-category";
+import NewsCard from "./components/news-card";
+import { Article } from "@/models/article";
+
 
 export default function Home() {
+  const [articles, setArticles] = useState<Article[]>([]);
 
-  
+  useEffect(() => {
+    const fetchArticles = async () => {
+      const today = new Date().toISOString().split("T")[0];
+      const res = await fetch(`/api/articles?date=${today}`);
+      const data = await res.json();
+      setArticles(data);
+    }
+    fetchArticles();
+  }, []);
+
   return (
-    <div className="flex flex-col w-full justify-center items-center">
-      <NewsCard
-        category={NewsCategory.Politics}
-        title="Florida man eats alligator!"
-        summary="At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta neiciendis voluptatibus maiores alias."
-        articleUrl=""
-        tags={[Tag.Neutral, Tag.Biased]} />
-    </div>
+    <>
+      <h1>Articles for Today</h1>
+      <div className="flex flex-col w-full justify-center items-center">
+        {articles.map((article) => (
+          <NewsCard key={article.id} article={article} />
+        ))}
+      </div>
+    </>
   );
 }
