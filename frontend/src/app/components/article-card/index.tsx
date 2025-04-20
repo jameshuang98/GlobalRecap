@@ -2,17 +2,17 @@
 import React from 'react'
 import { Badge } from "@/components/ui/badge"
 import { Button } from '@/components/ui/button';
-import { tagColors } from '@/app/utils/tagColorMapping';
+import { convertToTag, tagColorMap, tagDisplayNameMap } from '@/app/utils/tagUtils';
 import { cn } from '@/lib/utils';
 import { Article } from '@/models/article';
 
-type NewsCardProps = {
+type ArticleCardProps = {
   article: Article;
 };
 
-const NewsCard: React.FC<NewsCardProps> = ({ article }) => {
+const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
   const { title, source, event_date, summary, content, url, category, tags } = article;
-
+  console.log("Article:", article);
   return (
     <div className='max-w-[800px] w-full'>
       <hr />
@@ -27,8 +27,8 @@ const NewsCard: React.FC<NewsCardProps> = ({ article }) => {
         <div className='flex flex-col justify-between'>
           <div className='space-x-1'>
             {tags && tags.map((tag, index) => (
-              <Badge key={index} className={cn('text-xs font-normal my-1 rounded-xl', tagColors[tag])} >
-                {tag}
+              <Badge key={index} className={cn('text-xs font-normal my-1 pb-1 rounded-xl', tagColorMap[convertToTag(tag)])} >
+                {tagDisplayNameMap[convertToTag(tag)]} 
               </Badge>
             ))}
           </div>
@@ -41,4 +41,4 @@ const NewsCard: React.FC<NewsCardProps> = ({ article }) => {
   )
 }
 
-export default NewsCard
+export default ArticleCard

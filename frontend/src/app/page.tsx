@@ -1,9 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
 
 import { useDateQuery } from "./hooks/useDateQuery";
-import NewsCard from "./components/news-card";
+import ArticleCard from "./components/article-card";
 import { Article } from "@/models/article";
 import DateSelector from "./components/date-selector";
 import { formatDate, isValidDate, parseDate } from "./utils/dateUtils";
@@ -18,6 +17,7 @@ export default function Home() {
       const formattedDate = formatDate(date);
       const res = await fetch(`/api/articles?date=${formattedDate}`);
       const data = await res.json();
+      console.log("Fetched articles:", data);
       setArticles(data);
     }
     fetchArticles();
@@ -31,7 +31,7 @@ export default function Home() {
       <div className="flex flex-col w-full justify-center items-center">
         {articles.length > 0 ?
           (articles.map((article) => (
-            <NewsCard key={article.id} article={article} />
+            <ArticleCard key={article.id} article={article} />
           )))
           :
           <div className="text-center text-lg font-semibold mt-6">
