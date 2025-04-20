@@ -31,7 +31,7 @@ def parse_rss_feed(url: str) -> List[Dict[str, str]]:
             event_date=event_date,
             summary=cleaned_summary,
             content=content,
-            url = url,
+            url=url,
             category=category
         )
         articles.append(article)

@@ -1,38 +1,31 @@
-import psycopg2
-from psycopg2.extras import execute_values
 from config import DATABASE_URL
 from models import Article
 from typing import List
 
-def insert_articles(articles: List[Article]):
-    if not articles:
-        return
-    
-    insert_query = """
+def insert_articles_and_tags(article: Article, tags: List[str], conn) -> int:
+    with conn.cursor() as cursor:
+        cursor.execute("""
         INSERT INTO articles (title, source, event_date, summary, content, url, category)
-        VALUES %s
-        ON CONFLICT (url) DO NOTHING;
-    """
-
-    records = [
-        (
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
+        ON CONFLICT (url) DO NOTHING
+        RETURNING id;  
+        """, (
             article.title,
             article.source,
             article.event_date,
             article.summary,
             article.content,
             article.url,
-            article.category.value if article.category else 'Politics'
-        ) for article in articles
-    ]
-    
-    try:
-        with psycopg2.connect(DATABASE_URL) as conn:
-            with conn.cursor() as cursor:
-                execute_values(cursor, insert_query, records)
-                conn.commit()
-                print(f"Inserted {len(records)} articles into the database.")
-    except Exception as e:
-        print(f"Error inserting articles into the database: {e}")
+            article.category
+        ))
         
+        article_id = cursor.fetchone()[0]
+        
+        for tag in tags:
+            cursor.execute("""
+            INSERT INTO article_tags (article_id, tag)
+            VALUES (%s, %s)
+            ON CONFLICT (article_id, tag) DO NOTHING;
+            """, (article_id, tag))    
     
+    return article_id

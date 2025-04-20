@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from datetime import date
 from enum import Enum
+from typing import List
 
 class NewsCategory(Enum):
     POLITICS = "Politics"
@@ -10,6 +11,15 @@ class NewsCategory(Enum):
     HEALTH = "Health"
     ENTERTAINMENT = "Entertainment"
     ENVIRONMENT = "Environment"
+    
+class Tag(Enum):
+    POSITIVE = "positive"
+    NEGATIVE = "negative"
+    NEUTRAL = "neutral"
+    SLIGHTLY_BIASED = "slightly_biased"
+    BIASED = "biased"
+    LEFT_LEANING = "left_leaning"
+    RIGHT_LEANING = "right_leaning"
     
 
 @dataclass
