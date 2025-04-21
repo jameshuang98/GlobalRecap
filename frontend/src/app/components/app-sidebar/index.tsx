@@ -14,7 +14,7 @@ const AppSidebar = () => {
       <aside
         className={cn(
           "relative transition-all duration-300 ease-in-out overflow-hidden h-[calc(100vh-44px)] border-r-1 border-b-neutral-600",
-          open ? "w-64" : "w-16"
+          open ? "w-[256px] min-w-[256px]" : "w-[64px] min-w-[64px]"
         )}
       >
         <nav className="flex flex-col space-y-1 p-2">
@@ -37,7 +37,7 @@ const AppSidebar = () => {
         variant="ghost"
         onClick={() => setOpen((prev) => !prev)}
         className={cn(
-          "absolute top-16 z-20 w-[36px] rounded-full border shadow bg-white p-2 hover:bg-gray-50 transition-all duration-300",
+          "absolute top-16 z-20 w-[36px] rounded-full border cursor-pointer shadow bg-white p-2 hover:bg-gray-50 transition-all duration-300",
           open ? "left-[237px]" : "left-[45px]"
         )}
       >
